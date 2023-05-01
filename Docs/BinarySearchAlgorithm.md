@@ -30,8 +30,8 @@ binarySearch:
 	returns:
 		index of family member as array_index_type
 	function:
-		'minIndex' as array_index_type starting at 0
-		'maxIndex' as array_index_type starting at size of Family - 1
+		'minIndex' as array_index_type = 0
+		'maxIndex' as array_index_type = size of Family - 1
 		while minIndex <= maxIndex:
 			'i' as array_index_type = floor((minIndex + maxIndex) / 2)
 			if name of FamilyMember at index i of Family is > name:
