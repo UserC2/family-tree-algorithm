@@ -5,7 +5,7 @@
 * Family tree (array)
 	* Alphabetically sorted array of `FamilyMember`:
 		* Name of member (string)
-		* Pointer to parent member (pointer)
+		* Pointer or reference to parent member (`FamilyMember`)
 
 ## Description
 1. Find minimum and maximum index
@@ -40,11 +40,6 @@ binarySearch:
 				minIndex = i + 1;
 			if name of FamilyMember at index i of Family is == name:
 				return i;
-```
-
-### Array Generation
-```
-relationshipArray[personADistance][personBDistance]
 ```
 
 ### Generic
