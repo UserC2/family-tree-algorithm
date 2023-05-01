@@ -61,36 +61,6 @@ distanceToRoot:
 			increment distance by 1
 			parent = parent of parent
 		return distance
-
-findCommonAncestor:
-	requires:
-		'personA' as FamilyMember
-		'personB' as FamilyMember
-	returns:
-		most common ancestor as FamilyMember
-		or void if no common ancestor is found
-	function:
-		'ancestorsOfA' as array of FamilyMember = findPathToRoot(personAIndex)
-		'ancestorsOfB' as array of FamilyMember = findPathToRoot(personBIndex)
-		'i' as array_index_type
-		while i < size of ancestorsOfA:
-			if (FamilyMember at index i of ancestorsOfA == FamilyMember at index i of ancestorsOfB):
-				return FamilyMember at i of ancestorsOfA;
-			i = i + 1
-		return void
-
-findPathToRoot:
-	requires:
-		'person' as FamilyMember
-	returns:
-		path to root as array of FamilyMember
-	function:
-		'path' as array of FamilyMember
-		'parent' as FamilyMember = parent of person
-		while parent of parent != root:
-			path.push(parent of parent)
-			parent = parent of parent // what is this code?
-		return path
 			
 findRelationship:
 	requires:
