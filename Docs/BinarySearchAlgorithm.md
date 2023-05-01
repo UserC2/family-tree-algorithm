@@ -49,6 +49,19 @@ FamilyMember:
 		name as string
 		parent as FamilyMember
 
+distanceToRoot:
+	requires:
+		'person' as FamilyMember
+	returns:
+		distance from root of tree as integer
+	function:
+		'distance' as integer = 0
+		'parent' as FamilyMember = parent of person
+		while parent is valid:
+			increment distance by 1
+			parent = parent of parent
+		return distance
+
 findCommonAncestor:
 	requires:
 		'personA' as FamilyMember
@@ -89,11 +102,18 @@ findRelationship:
 	function:
 		'personAIndex' as array_index_type = binarySearch(personAName, Family)
 		'personBIndex' as array_index_type = binarySearch(personBName, Family)
-		'mostCommonAncestor' as FamilyMember = findCommonAncestor(personAIndex, personBIndex)
-		'personADistance' as integer = findDistance(personAIndex, mostCommonAncestor)
-		'personBDistance' as integer = findDistance(personBIndex, mostCommonAncestor)
-		return Relationships.getString(personADistance, personBDistance)
+		'personALevel' as integer = distanceToRoot(FamilyMember at personAIndex of Family)
+		'personBLevel' as integer = distanceToRoot(FamilyMember at personBIndex of Family)
 
+		'generationalDistance' as integer = abs(personALevel - personBLevel)
+		'aIsOlderOrSameAge' as boolean = personALevel <= personBLevel
+
+		note: function does not exist yet
+		return getRelationshipString(generationalDistance, aIsOlderOrSameAge)
+```
+
+**This class not likely to be used:**
+```
 Relationships:
 	member:
 		'baseArray' as array of array of string
