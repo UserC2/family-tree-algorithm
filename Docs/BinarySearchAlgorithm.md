@@ -167,6 +167,23 @@ Relationships:
 						This is a bit too complicated.
 ```
 
-## Strengths
+## Complexity
+### Time
+**`O((log n) + l)`** where `n` is the amount of members in the family tree and `l` is the amount of levels in the family tree
 
-## Weaknesses
+**Explanation:**
+* The array containing all family members is assumed to be sorted prior to using the algorithm.
+* `log n` is the amount of iterations necessary to find a family member within the array using a binary search algorithm.
+* Once the family member is found, it will take up to `l` iterations to find how far they are from the root.
+* This process must be repeated for each family member, yielding a complexity of **`O(2(log n) + 2l)`**.
+* The coefficient `2` can be omitted as it does not significantly affect the growth rate.
+* (`l` could also be omitted as it is a constant and does not affect the growth rate, however it is a significant contributor to the time complexity of the algorithm for any remotely 'realistic' use case.)
+	* For example, set `n` to 10<sup>299</sup> (a fairly large number).
+	* log<sub>2</sub>(n) ~= 993 iterations.
+	* For a family tree of that size, ~1000 levels wouldn't be unreasonable, which means that `l` would contribute 1000 iterations.
+
+### Space
+**`O(1)`**
+
+**Explanation:**
+* This algorithm only uses the family tree array provided to it. No copies are made.
